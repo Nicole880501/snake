@@ -13,17 +13,26 @@
 <body>
     <div class="container">
         <div id="header">
-            <div id="score">得分: <span id="scoreValue">0</span></div>
             <div id="highScore">最高得分: <span id="highScoreValue">0</span></div>
+            <div id="score">得分: <span id="scoreValue">0</span></div>
         </div>
         <canvas id="gameCanvas" width="400" height="400"></canvas>
-        <div id="difficulty">
-            <label for="speed">游戏难度:</label>
-            <select id="speed">
-                <option value="200">简单</option>
-                <option value="150">适中</option>
-                <option value="100">困难</option>
-            </select>
+        <div class="set-mode">
+            <div class="select-mode">
+                <label for="mode">选择模式:</label>
+                <select id="mode">
+                    <option value="single">单人模式</option>
+                    <option value="multi">双人模式</option>
+                </select>
+            </div>
+            <div id="difficulty">
+                <label for="speed">游戏难度:</label>
+                <select id="speed">
+                    <option value="200">简单</option>
+                    <option value="150">适中</option>
+                    <option value="100">困难</option>
+                </select>
+            </div>
         </div>
         <button id="startBtn">开始游戏</button>
         <button id="resetBtn">重新开始</button>
