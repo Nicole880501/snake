@@ -294,7 +294,6 @@ speedSelect.addEventListener("change", () => {
     clearInterval(intervalId);
     startBtn.disabled = false;
     score = 0;
-    document.getElementById("scoreValue").textContent = score;
     snake1 = [{ x: 6, y: 6 }];
     dx1 = 0;
     dy1 = 0;
@@ -302,6 +301,7 @@ speedSelect.addEventListener("change", () => {
     dx2 = 0;
     dy2 = 0;
     if (modeSelect.value === "single") {
+        document.getElementById("scoreValue").textContent = score;
         drawGame(0);
     } else if (modeSelect.value === "multi") {
         drawGame(1);
