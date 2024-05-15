@@ -195,7 +195,6 @@ function initMultiPlayerGame() {
     dx2 = 0; // 初始化第二条蛇的水平移动方向
     dy2 = 0; // 初始化第二条蛇的垂直移动方向
     gameSpeed = parseInt(speedSelect.value);
-    console.log(gameSpeed)
     intervalId = setInterval(() => {
         moveSnake(1);
         drawGame(1);
@@ -277,7 +276,7 @@ resetBtn.addEventListener("click", () => {
     clearInterval(intervalId);
     startBtn.disabled = false;
     score = 0;
-    scoreElement.textContent = score;
+    document.getElementById("scoreValue").textContent = score;
     snake1 = [{ x: 6, y: 6 }];
     dx1 = 0;
     dy1 = 0;
@@ -294,10 +293,18 @@ resetBtn.addEventListener("click", () => {
 speedSelect.addEventListener("change", () => {
     clearInterval(intervalId);
     startBtn.disabled = false;
+    score = 0;
+    document.getElementById("scoreValue").textContent = score;
+    snake1 = [{ x: 6, y: 6 }];
+    dx1 = 0;
+    dy1 = 0;
+    snake2 = [{ x: 8, y: 8 }];
+    dx2 = 0;
+    dy2 = 0;
     if (modeSelect.value === "single") {
-        initSinglePlayerGame();
+        drawGame(0);
     } else if (modeSelect.value === "multi") {
-        initMultiPlayerGame();
+        drawGame(1);
     }
 });
 
@@ -330,15 +337,14 @@ modeSelect.addEventListener("change", () => {
         document.getElementById("highScore").textContent = "最高得分: "
         const scoreSpan_ = document.createElement("span");
         scoreSpan_.id = "highScoreValue";
-        scoreSpan_.textContent = "0";
+        // 注意这应该恢复最高得分
+        scoreSpan_.textContent = highScore;
         document.getElementById("highScore").appendChild(scoreSpan_);
         drawGame();
-        initSinglePlayerGame();
     } else if (modeSelect.value === "multi") {
         document.getElementById("score").remove();
         document.getElementById("highScore").textContent = "上局胜方: ";
         drawGame(1);
-        initMultiPlayerGame();
     }
 });
 
