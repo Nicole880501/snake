@@ -19,7 +19,6 @@ body {
 
 #header {
     display: flex;
-    /* 均匀铺满主轴 */
     justify-content: space-between;
     align-items: center;
     width: 400px;
@@ -61,7 +60,8 @@ body {
 }
 
 #startBtn,
-#resetBtn {
+#resetBtn,
+#toggleInstructionsBtn {
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
@@ -79,6 +79,14 @@ body {
 }
 
 #resetBtn:hover {
+    color: white;
+    font-weight: bolder;
+    background-color: lightcoral;
+    transform: scale(1.1);
+    transition: 400ms;
+}
+
+#toggleInstructionsBtn:hover {
     color: white;
     font-weight: bolder;
     background-color: lightcoral;
