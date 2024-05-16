@@ -86,12 +86,13 @@ body {
     transition: 400ms;
 }
 
-#startBtn:hover {
-    color: white;
-    background-color: lightcoral;
-    font-weight: bolder;
-    transform: scale(1.1);
-    transition: 400ms;
+/* 使用更高的权重 */
+#startBtn:not([disabled]):hover {
+    color: white !important;
+    background-color: lightcoral !important;
+    font-weight: bolder !important;
+    transform: scale(1.1) !important;
+    transition: 400ms !important;
 }
 
 #resetBtn:hover {
