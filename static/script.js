@@ -313,6 +313,9 @@ document.addEventListener("keydown", (e) => {
 
 startBtn.addEventListener("click", () => {
     clearInterval(intervalId);
+    // 清空方向，防止按下按钮直接移动
+    directionQueue1.length = 0;
+    directionQueue2.length = 0;
     if (modeSelect.value === "single") {
         score = 0;
         initSinglePlayerGame();
