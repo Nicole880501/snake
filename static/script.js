@@ -168,14 +168,16 @@ function gameOver(id = 0) {
     clearInterval(intervalId);
     generateFood();
     if (id === 0) {
-        overMusic.play();
         if (score > highScore) {
             highScore = score;
             document.getElementById("highScoreValue").textContent = highScore;
+            victoryMusic.play();
+            alert("恭喜您打破纪录✨✨✨\n您的得分是：" + score);
         }
-        setTimeout(() => {
-            alert("Game Over! Your score: " + score);
-        }, 100);  // 100ms 延迟，确保音乐播放开始
+        else {
+            overMusic.play();
+            alert("游戏结束😫您的得分是：" + score);
+        }
         generateSnake();
         dx1 = 0;
         dy1 = 0;
@@ -184,7 +186,7 @@ function gameOver(id = 0) {
         startBtn.disabled = false;
     } else if (id === 1) {
         victoryMusic.play();
-        document.getElementById("highScore").textContent = "上局胜方: 玩家2";
+        document.getElementById("highScore").textContent = "上局胜方😀: 玩家2️⃣";
         setTimeout(() => {
             alert("玩家2获胜！");
         }, 100);  // 100ms 延迟，确保音乐播放开始
@@ -197,7 +199,7 @@ function gameOver(id = 0) {
         startBtn.disabled = false;
     } else if (id === 2) {
         victoryMusic.play();
-        document.getElementById("highScore").textContent = "上局胜方: 玩家1";
+        document.getElementById("highScore").textContent = "上局胜方😀: 玩家1️⃣";
         alert("玩家1获胜！");
         generateSnake();
         dx1 = 0;
@@ -281,6 +283,7 @@ document.addEventListener("keydown", (e) => {
 document.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "w":
+        case "W":
             if (directionQueue2.length === 0 && dy2 === 0) {
                 directionQueue2.push({ dx: 0, dy: -1 });
             } else if (directionQueue2.length > 0 && directionQueue2[directionQueue2.length - 1].dy === 0) {
@@ -288,6 +291,7 @@ document.addEventListener("keydown", (e) => {
             }
             break;
         case "s":
+        case "S":
             if (directionQueue2.length === 0 && dy2 === 0) {
                 directionQueue2.push({ dx: 0, dy: 1 });
             } else if (directionQueue2.length > 0 && directionQueue2[directionQueue2.length - 1].dy === 0) {
@@ -295,6 +299,7 @@ document.addEventListener("keydown", (e) => {
             }
             break;
         case "a":
+        case "A":
             if (directionQueue2.length === 0 && dx2 === 0) {
                 directionQueue2.push({ dx: -1, dy: 0 });
             } else if (directionQueue2.length > 0 && directionQueue2[directionQueue2.length - 1].dx === 0) {
@@ -302,6 +307,7 @@ document.addEventListener("keydown", (e) => {
             }
             break;
         case "d":
+        case "D":
             if (directionQueue2.length === 0 && dx2 === 0) {
                 directionQueue2.push({ dx: 1, dy: 0 });
             } else if (directionQueue2.length > 0 && directionQueue2[directionQueue2.length - 1].dx === 0) {
@@ -375,6 +381,7 @@ modeSelect.addEventListener("change", () => {
 
     // 根据选择的模式重新开始游戏
     if (modeSelect.value === "single") {
+        document.getElementById('direction-buttons-2').style.display = 'none';
         const scoreDiv = document.createElement("div");
         scoreDiv.id = "score";
         // 创建<span>元素
@@ -382,11 +389,11 @@ modeSelect.addEventListener("change", () => {
         scoreSpan.id = "scoreValue";
         scoreSpan.textContent = "0";
         // 将<span>添加到<div>中
-        scoreDiv.appendChild(document.createTextNode("得分: "));
+        scoreDiv.appendChild(document.createTextNode("得分🚩: "));
         scoreDiv.appendChild(scoreSpan);
         // 将新创建的元素添加到文档中的某个容器中
         header.appendChild(scoreDiv);
-        document.getElementById("highScore").textContent = "最高得分: "
+        document.getElementById("highScore").textContent = "最高得分🤠: "
         const scoreSpan_ = document.createElement("span");
         scoreSpan_.id = "highScoreValue";
         // 注意这应该恢复最高得分
@@ -394,8 +401,9 @@ modeSelect.addEventListener("change", () => {
         document.getElementById("highScore").appendChild(scoreSpan_);
         drawGame();
     } else if (modeSelect.value === "multi") {
+        document.getElementById('direction-buttons-2').style.display = '';
         document.getElementById("score").remove();
-        document.getElementById("highScore").textContent = "上局胜方: ";
+        document.getElementById("highScore").textContent = "上局胜方😀: ";
         drawGame(1);
     }
 });
@@ -403,3 +411,4 @@ modeSelect.addEventListener("change", () => {
 // 默认是单人模式绘制游戏
 generateSnake();
 drawGame();
+document.getElementById('direction-buttons-2').style.display = 'none';
