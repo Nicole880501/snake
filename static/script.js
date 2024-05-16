@@ -1,8 +1,10 @@
 const modeSelect = document.getElementById("mode");
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
-const scoreElement = document.getElementById("scoreValue");
+const scoreElement = document.getElementById("score");
+const scoreValueElement = document.getElementById("scoreValue");
 const highScoreElement = document.getElementById("highScoreValue");
+const highScoreTextElement = document.getElementById("highScoreText");
 const startBtn = document.getElementById("startBtn");
 const resetBtn = document.getElementById("resetBtn");
 const speedSelect = document.getElementById("speed");
@@ -63,7 +65,7 @@ function moveSnake(id = 0) {
         if (head.x === food.x && head.y === food.y) {
             eatMusic.play();
             score += 10;
-            document.getElementById("scoreValue").textContent = score;
+            scoreValueElement.textContent = score;
             generateFood();
         } else {
             snake1.pop();
@@ -170,7 +172,7 @@ function gameOver(id = 0) {
     if (id === 0) {
         if (score > highScore) {
             highScore = score;
-            document.getElementById("highScoreValue").textContent = highScore;
+            highScoreElement.textContent = highScore;
             victoryMusic.play();
             alert("恭喜您打破纪录✨✨✨\n您的得分是：" + score);
         }
@@ -182,11 +184,11 @@ function gameOver(id = 0) {
         dx1 = 0;
         dy1 = 0;
         drawGame();
-        document.getElementById("scoreValue").textContent = 0;
+        scoreValueElement.textContent = 0;
         startBtn.disabled = false;
     } else if (id === 1) {
         victoryMusic.play();
-        document.getElementById("highScore").textContent = "上局胜方😀: 玩家2️⃣";
+        highScoreElement.textContent = "玩家2️⃣"
         setTimeout(() => {
             alert("玩家2获胜！");
         }, 100);  // 100ms 延迟，确保音乐播放开始
@@ -199,7 +201,7 @@ function gameOver(id = 0) {
         startBtn.disabled = false;
     } else if (id === 2) {
         victoryMusic.play();
-        document.getElementById("highScore").textContent = "上局胜方😀: 玩家1️⃣";
+        highScoreElement.textContent = "玩家1️⃣"
         alert("玩家1获胜！");
         generateSnake();
         dx1 = 0;
@@ -222,7 +224,7 @@ function initSinglePlayerGame() {
     dx1 = 0; // 初始化蛇的水平移动方向
     dy1 = 0; // 初始化蛇的垂直移动方向
     score = 0;
-    scoreElement.textContent = score;
+    scoreValueElement.textContent = score;
     gameSpeed = parseInt(speedSelect.value);
     intervalId = setInterval(() => {
         moveSnake();
@@ -337,7 +339,7 @@ resetBtn.addEventListener("click", () => {
     startBtn.disabled = false;
     score = 0;
     if (modeSelect.value === "single")
-        document.getElementById("scoreValue").textContent = score;
+        scoreValueElement.textContent = score;
     generateSnake();
     dx1 = 0;
     dy1 = 0;
@@ -360,7 +362,7 @@ speedSelect.addEventListener("change", () => {
     dx2 = 0;
     dy2 = 0;
     if (modeSelect.value === "single") {
-        document.getElementById("scoreValue").textContent = score;
+        scoreValueElement.textContent = score;
         drawGame(0);
     } else if (modeSelect.value === "multi") {
         drawGame(1);
@@ -372,7 +374,7 @@ modeSelect.addEventListener("change", () => {
     clearInterval(intervalId); // 清除游戏定时器
     startBtn.disabled = false; // 启用开始按钮
     score = 0;
-    scoreElement.textContent = score;
+    scoreValueElement.textContent = score;
     generateSnake();
     dx1 = 0;
     dy1 = 0;
@@ -381,29 +383,24 @@ modeSelect.addEventListener("change", () => {
 
     // 根据选择的模式重新开始游戏
     if (modeSelect.value === "single") {
+        // 恢复得分显示
+        scoreElement.style.display = '';
+        // 隐藏玩家二按钮
         document.getElementById('direction-buttons-2').style.display = 'none';
-        const scoreDiv = document.createElement("div");
-        scoreDiv.id = "score";
-        // 创建<span>元素
-        const scoreSpan = document.createElement("span");
-        scoreSpan.id = "scoreValue";
-        scoreSpan.textContent = "0";
-        // 将<span>添加到<div>中
-        scoreDiv.appendChild(document.createTextNode("得分🚩: "));
-        scoreDiv.appendChild(scoreSpan);
-        // 将新创建的元素添加到文档中的某个容器中
-        header.appendChild(scoreDiv);
-        document.getElementById("highScore").textContent = "最高得分🤠: "
-        const scoreSpan_ = document.createElement("span");
-        scoreSpan_.id = "highScoreValue";
-        // 注意这应该恢复最高得分
-        scoreSpan_.textContent = highScore;
-        document.getElementById("highScore").appendChild(scoreSpan_);
+        // 恢复最高得分文本
+        document.getElementById("highScoreText").textContent = "最高得分🤠:";
+        // 恢复最高得分数值
+        highScoreElement.textContent = highScore;
         drawGame();
     } else if (modeSelect.value === "multi") {
+        // 恢复玩家二按钮
         document.getElementById('direction-buttons-2').style.display = '';
-        document.getElementById("score").remove();
-        document.getElementById("highScore").textContent = "上局胜方😀: ";
+        // 隐藏得分显示
+        scoreElement.style.display = 'none';
+        // 修改最高得分文本
+        highScoreTextElement.textContent = "上局胜方😀: ";
+        // 修改最高得分数值
+        highScoreElement.textContent = '';
         drawGame(1);
     }
 });
