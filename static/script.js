@@ -139,7 +139,9 @@ function gameOver(id = 0) {
             highScore = score;
             document.getElementById("highScoreValue").textContent = highScore;
         }
-        alert("Game Over! Your score: " + score);
+        setTimeout(() => {
+            alert("Game Over! Your score: " + score);
+        }, 100);  // 100ms 延迟，确保音乐播放开始
         score = 0;
         document.getElementById("scoreValue").textContent = score;
         snake1 = [{ x: 10, y: 10 }];
@@ -150,7 +152,9 @@ function gameOver(id = 0) {
     } else if (id === 1) {
         victoryMusic.play();
         document.getElementById("highScore").textContent = "上局胜方: 玩家2";
-        alert("玩家2获胜！");
+        setTimeout(() => {
+            alert("玩家2获胜！");
+        }, 100);  // 100ms 延迟，确保音乐播放开始
         snake1 = [{ x: 6, y: 6 }];
         dx1 = 0;
         dy1 = 0;
