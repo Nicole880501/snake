@@ -176,12 +176,11 @@ function gameOver(id = 0) {
         setTimeout(() => {
             alert("Game Over! Your score: " + score);
         }, 100);  // 100ms 延迟，确保音乐播放开始
-        score = 0;
-        document.getElementById("scoreValue").textContent = score;
         generateSnake();
         dx1 = 0;
         dy1 = 0;
         drawGame();
+        document.getElementById("scoreValue").textContent = 0;
         startBtn.disabled = false;
     } else if (id === 1) {
         victoryMusic.play();
@@ -315,6 +314,7 @@ document.addEventListener("keydown", (e) => {
 startBtn.addEventListener("click", () => {
     clearInterval(intervalId);
     if (modeSelect.value === "single") {
+        score = 0;
         initSinglePlayerGame();
     } else if (modeSelect.value === "multi") {
         initMultiPlayerGame();
