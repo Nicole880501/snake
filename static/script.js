@@ -238,22 +238,30 @@ function initMultiPlayerGame() {
 document.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "ArrowUp":
-            if (dy1 === 0 && (directionQueue1.length === 0 || directionQueue1[directionQueue1.length - 1].dy === 0)) {
+            if (directionQueue1.length === 0 && dy1 === 0) {
+                directionQueue1.push({ dx: 0, dy: -1 });
+            } else if (directionQueue1.length > 0 && directionQueue1[directionQueue1.length - 1].dy === 0) {
                 directionQueue1.push({ dx: 0, dy: -1 });
             }
             break;
         case "ArrowDown":
-            if (dy1 === 0 && (directionQueue1.length === 0 || directionQueue1[directionQueue1.length - 1].dy === 0)) {
+            if (directionQueue1.length === 0 && dy1 === 0) {
+                directionQueue1.push({ dx: 0, dy: 1 });
+            } else if (directionQueue1.length > 0 && directionQueue1[directionQueue1.length - 1].dy === 0) {
                 directionQueue1.push({ dx: 0, dy: 1 });
             }
             break;
         case "ArrowLeft":
-            if (dx1 === 0 && (directionQueue1.length === 0 || directionQueue1[directionQueue1.length - 1].dx === 0)) {
+            if (directionQueue1.length === 0 && dx1 === 0) {
+                directionQueue1.push({ dx: -1, dy: 0 });
+            } else if (directionQueue1.length > 0 && directionQueue1[directionQueue1.length - 1].dx === 0) {
                 directionQueue1.push({ dx: -1, dy: 0 });
             }
             break;
         case "ArrowRight":
-            if (dx1 === 0 && (directionQueue1.length === 0 || directionQueue1[directionQueue1.length - 1].dx === 0)) {
+            if (directionQueue1.length === 0 && dx1 === 0) {
+                directionQueue1.push({ dx: 1, dy: 0 });
+            } else if (directionQueue1.length > 0 && directionQueue1[directionQueue1.length - 1].dx === 0) {
                 directionQueue1.push({ dx: 1, dy: 0 });
             }
             break;
@@ -262,25 +270,32 @@ document.addEventListener("keydown", (e) => {
 
 // 监听第二条蛇的键盘事件，控制第二条蛇的移动方向
 document.addEventListener("keydown", (e) => {
-    console.log(e.key)
     switch (e.key) {
         case "w":
-            if (dy2 === 0 && (directionQueue2.length === 0 || directionQueue2[directionQueue2.length - 1].dy === 0)) {
+            if (directionQueue2.length === 0 && dy2 === 0) {
+                directionQueue2.push({ dx: 0, dy: -1 });
+            } else if (directionQueue2.length > 0 && directionQueue2[directionQueue2.length - 1].dy === 0) {
                 directionQueue2.push({ dx: 0, dy: -1 });
             }
             break;
         case "s":
-            if (dy2 === 0 && (directionQueue2.length === 0 || directionQueue2[directionQueue2.length - 1].dy === 0)) {
+            if (directionQueue2.length === 0 && dy2 === 0) {
+                directionQueue2.push({ dx: 0, dy: 1 });
+            } else if (directionQueue2.length > 0 && directionQueue2[directionQueue2.length - 1].dy === 0) {
                 directionQueue2.push({ dx: 0, dy: 1 });
             }
             break;
         case "a":
-            if (dx2 === 0 && (directionQueue2.length === 0 || directionQueue2[directionQueue2.length - 1].dx === 0)) {
+            if (directionQueue2.length === 0 && dx2 === 0) {
+                directionQueue2.push({ dx: -1, dy: 0 });
+            } else if (directionQueue2.length > 0 && directionQueue2[directionQueue2.length - 1].dx === 0) {
                 directionQueue2.push({ dx: -1, dy: 0 });
             }
             break;
         case "d":
-            if (dx2 === 0 && (directionQueue2.length === 0 || directionQueue2[directionQueue2.length - 1].dx === 0)) {
+            if (directionQueue2.length === 0 && dx2 === 0) {
+                directionQueue2.push({ dx: 1, dy: 0 });
+            } else if (directionQueue2.length > 0 && directionQueue2[directionQueue2.length - 1].dx === 0) {
                 directionQueue2.push({ dx: 1, dy: 0 });
             }
             break;
