@@ -1,12 +1,15 @@
 const moveButtons = document.querySelectorAll('.move-btn');
+console.log(moveButtons[0].getAttribute('player'))
 
 // 为每个移动按钮添加点击事件监听器
 moveButtons.forEach(button => {
     button.addEventListener('click', () => {
-        if (button.player === "1")
+        if (button.getAttribute('player') === "1") {
             handlePlayer1Move(button.id);
-        else
+        }
+        else {
             handlePlayer2Move(button.id);
+        }
     });
 });
 
