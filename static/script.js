@@ -10,6 +10,9 @@ const CELL_SIZE = 20;
 const CANVAS_SIZE = 400;
 const GRID_SIZE = CANVAS_SIZE / CELL_SIZE;
 const header = document.getElementById("header");
+const eatMusic = document.getElementById('eatFood');
+const overMusic = document.getElementById('gameOver');
+const victoryMusic = document.getElementById('gameVictory');
 
 let snake1 = [{ x: 6, y: 6 }]; // 初始化第一条蛇的初始位置
 let snake2 = [{ x: 10, y: 10 }]; // 初始化第二条蛇的初始位置
@@ -50,6 +53,7 @@ function moveSnake(id = 0) {
         const head = { x: snake1[0].x + dx1, y: snake1[0].y + dy1 };
         snake1.unshift(head);
         if (head.x === food.x && head.y === food.y) {
+            eatMusic.play();
             score += 10;
             document.getElementById("scoreValue").textContent = score;
             generateFood();
@@ -62,9 +66,11 @@ function moveSnake(id = 0) {
         snake1.unshift(head1);
         snake2.unshift(head2);
         if (head1.x === food.x && head1.y === food.y) {
+            eatMusic.play();
             generateFood();
             snake2.pop();
         } else if (head2.x === food.x && head2.y === food.y) {
+            eatMusic.play();
             generateFood();
             snake1.pop();
         } else {
@@ -128,6 +134,7 @@ function checkCollision(id = 0) {
 function gameOver(id = 0) {
     clearInterval(intervalId);
     if (id === 0) {
+        overMusic.play();
         if (score > highScore) {
             highScore = score;
             document.getElementById("highScoreValue").textContent = highScore;
@@ -141,6 +148,7 @@ function gameOver(id = 0) {
         drawGame();
         startBtn.disabled = false;
     } else if (id === 1) {
+        victoryMusic.play();
         document.getElementById("highScore").textContent = "上局胜方: 玩家2";
         alert("玩家2获胜！");
         snake1 = [{ x: 6, y: 6 }];
@@ -152,6 +160,7 @@ function gameOver(id = 0) {
         drawGame(1);
         startBtn.disabled = false;
     } else if (id === 2) {
+        victoryMusic.play();
         document.getElementById("highScore").textContent = "上局胜方: 玩家1";
         alert("玩家1获胜！");
         snake1 = [{ x: 6, y: 6 }];
