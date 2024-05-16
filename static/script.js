@@ -388,7 +388,7 @@ modeSelect.addEventListener("change", () => {
         // 隐藏玩家二按钮
         document.getElementById('direction-buttons-2').style.display = 'none';
         // 恢复最高得分文本
-        document.getElementById("highScoreText").textContent = "最高得分🤠:";
+        document.getElementById("highScoreText").textContent = "最高得分🤠: ";
         // 恢复最高得分数值
         highScoreElement.textContent = highScore;
         drawGame();
