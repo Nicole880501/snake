@@ -59,6 +59,14 @@ body {
     border: 2px solid #333;
 }
 
+#musicToggleBtn {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: wheat;
+}
+
 #startBtn,
 #resetBtn,
 #toggleInstructionsBtn {
@@ -68,6 +76,14 @@ body {
     cursor: pointer;
     border: none;
     border-radius: 5px;
+}
+
+#musicToggleBtn:hover {
+    color: white;
+    background-color: lightcoral;
+    font-weight: bolder;
+    transform: scale(1.1);
+    transition: 400ms;
 }
 
 #startBtn:hover {
