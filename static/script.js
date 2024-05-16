@@ -218,7 +218,6 @@ function drawGame(id = 0) {
 
 // 初始化单人模式游戏
 function initSinglePlayerGame() {
-    snake1 = [{ x: 6, y: 6 }]; // 初始化蛇的初始位置
     dx1 = 0; // 初始化蛇的水平移动方向
     dy1 = 0; // 初始化蛇的垂直移动方向
     score = 0;
@@ -233,7 +232,6 @@ function initSinglePlayerGame() {
 
 // 初始化双人模式游戏
 function initMultiPlayerGame() {
-    generateSnake();
     dx1 = 0; // 初始化第一条蛇的水平移动方向
     dy1 = 0; // 初始化第一条蛇的垂直移动方向
     dx2 = 0; // 初始化第二条蛇的水平移动方向
