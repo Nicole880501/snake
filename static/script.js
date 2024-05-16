@@ -152,6 +152,7 @@ function checkCollision(id = 0) {
 
 function gameOver(id = 0) {
     clearInterval(intervalId);
+    generateFood();
     if (id === 0) {
         overMusic.play();
         if (score > highScore) {
@@ -314,6 +315,7 @@ startBtn.addEventListener("click", () => {
 
 resetBtn.addEventListener("click", () => {
     clearInterval(intervalId);
+    generateFood();
     startBtn.disabled = false;
     score = 0;
     document.getElementById("scoreValue").textContent = score;
