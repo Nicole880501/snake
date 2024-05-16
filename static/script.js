@@ -109,6 +109,20 @@ function generateFood() {
     }
 }
 
+function generateSnake() {
+    snake1 = [{
+        x: Math.floor(Math.random() * GRID_SIZE),
+        y: Math.floor(Math.random() * GRID_SIZE)
+    }];
+    snake2 = [{
+        x: Math.floor(Math.random() * GRID_SIZE),
+        y: Math.floor(Math.random() * GRID_SIZE)
+    }];
+    if (snake1[0].x === snake2[0].x && snake1[0].y === snake2[0].y) {
+        generateSnake();
+    }
+}
+
 /**
  * 检查碰撞
  */
@@ -164,7 +178,7 @@ function gameOver(id = 0) {
         }, 100);  // 100ms 延迟，确保音乐播放开始
         score = 0;
         document.getElementById("scoreValue").textContent = score;
-        snake1 = [{ x: 10, y: 10 }];
+        generateSnake();
         dx1 = 0;
         dy1 = 0;
         drawGame();
@@ -175,10 +189,9 @@ function gameOver(id = 0) {
         setTimeout(() => {
             alert("玩家2获胜！");
         }, 100);  // 100ms 延迟，确保音乐播放开始
-        snake1 = [{ x: 6, y: 6 }];
+        generateSnake();
         dx1 = 0;
         dy1 = 0;
-        snake2 = [{ x: 8, y: 8 }];
         dx2 = 0;
         dy2 = 0;
         drawGame(1);
@@ -187,10 +200,9 @@ function gameOver(id = 0) {
         victoryMusic.play();
         document.getElementById("highScore").textContent = "上局胜方: 玩家1";
         alert("玩家1获胜！");
-        snake1 = [{ x: 6, y: 6 }];
+        generateSnake();
         dx1 = 0;
         dy1 = 0;
-        snake2 = [{ x: 8, y: 8 }];
         dx2 = 0;
         dy2 = 0;
         drawGame(1);
@@ -221,8 +233,7 @@ function initSinglePlayerGame() {
 
 // 初始化双人模式游戏
 function initMultiPlayerGame() {
-    snake1 = [{ x: 6, y: 6 }]; // 初始化第一条蛇的初始位置
-    snake2 = [{ x: 8, y: 8 }]; // 初始化第二条蛇的初始位置
+    generateSnake();
     dx1 = 0; // 初始化第一条蛇的水平移动方向
     dy1 = 0; // 初始化第一条蛇的垂直移动方向
     dx2 = 0; // 初始化第二条蛇的水平移动方向
@@ -318,11 +329,11 @@ resetBtn.addEventListener("click", () => {
     generateFood();
     startBtn.disabled = false;
     score = 0;
-    document.getElementById("scoreValue").textContent = score;
-    snake1 = [{ x: 6, y: 6 }];
+    if (modeSelect.value === "single")
+        document.getElementById("scoreValue").textContent = score;
+    generateSnake();
     dx1 = 0;
     dy1 = 0;
-    snake2 = [{ x: 8, y: 8 }];
     dx2 = 0;
     dy2 = 0;
     if (modeSelect.value === "single") {
@@ -336,10 +347,9 @@ speedSelect.addEventListener("change", () => {
     clearInterval(intervalId);
     startBtn.disabled = false;
     score = 0;
-    snake1 = [{ x: 6, y: 6 }];
+    generateSnake();
     dx1 = 0;
     dy1 = 0;
-    snake2 = [{ x: 8, y: 8 }];
     dx2 = 0;
     dy2 = 0;
     if (modeSelect.value === "single") {
@@ -356,10 +366,9 @@ modeSelect.addEventListener("change", () => {
     startBtn.disabled = false; // 启用开始按钮
     score = 0;
     scoreElement.textContent = score;
-    snake1 = [{ x: 6, y: 6 }];
+    generateSnake();
     dx1 = 0;
     dy1 = 0;
-    snake2 = [{ x: 8, y: 8 }];
     dx2 = 0;
     dy2 = 0;
 
@@ -391,4 +400,5 @@ modeSelect.addEventListener("change", () => {
 });
 
 // 默认是单人模式绘制游戏
+generateSnake();
 drawGame();
