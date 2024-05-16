@@ -25,6 +25,8 @@ let score = 0;
 let highScore = 0;
 let intervalId;
 let gameSpeed = parseInt(speedSelect.value);
+let directionQueue1 = []; // 玩家一的方向缓冲区
+let directionQueue2 = []; // 玩家二的方向缓冲区
 
 function drawCell(x, y, color) {
     ctx.fillStyle = color;
@@ -50,6 +52,12 @@ function drawFood() {
 
 function moveSnake(id = 0) {
     if (id === 0) {
+        // 提取方向
+        if (directionQueue1.length > 0) {
+            const newDirection = directionQueue1.shift();
+            dx1 = newDirection.dx;
+            dy1 = newDirection.dy;
+        }
         const head = { x: snake1[0].x + dx1, y: snake1[0].y + dy1 };
         snake1.unshift(head);
         if (head.x === food.x && head.y === food.y) {
@@ -61,6 +69,17 @@ function moveSnake(id = 0) {
             snake1.pop();
         }
     } else if (id === 1) {
+        // 提取方向
+        if (directionQueue1.length > 0) {
+            const newDirection = directionQueue1.shift();
+            dx1 = newDirection.dx;
+            dy1 = newDirection.dy;
+        }
+        if (directionQueue2.length > 0) {
+            const newDirection = directionQueue2.shift();
+            dx2 = newDirection.dx;
+            dy2 = newDirection.dy;
+        }
         const head1 = { x: snake1[0].x + dx1, y: snake1[0].y + dy1 };
         const head2 = { x: snake2[0].x + dx2, y: snake2[0].y + dy2 };
         snake1.unshift(head1);
@@ -215,31 +234,27 @@ function initMultiPlayerGame() {
     }, gameSpeed);
 }
 
-// 监听键盘事件，控制第一条蛇的移动方向
+// 监听第一条蛇的键盘事件，控制第一条蛇的移动方向
 document.addEventListener("keydown", (e) => {
     switch (e.key) {
         case "ArrowUp":
-            if (dy1 === 0) {
-                dx1 = 0;
-                dy1 = -1;
+            if (dy1 === 0 && (directionQueue1.length === 0 || directionQueue1[directionQueue1.length - 1].dy === 0)) {
+                directionQueue1.push({ dx: 0, dy: -1 });
             }
             break;
         case "ArrowDown":
-            if (dy1 === 0) {
-                dx1 = 0;
-                dy1 = 1;
+            if (dy1 === 0 && (directionQueue1.length === 0 || directionQueue1[directionQueue1.length - 1].dy === 0)) {
+                directionQueue1.push({ dx: 0, dy: 1 });
             }
             break;
         case "ArrowLeft":
-            if (dx1 === 0) {
-                dx1 = -1;
-                dy1 = 0;
+            if (dx1 === 0 && (directionQueue1.length === 0 || directionQueue1[directionQueue1.length - 1].dx === 0)) {
+                directionQueue1.push({ dx: -1, dy: 0 });
             }
             break;
         case "ArrowRight":
-            if (dx1 === 0) {
-                dx1 = 1;
-                dy1 = 0;
+            if (dx1 === 0 && (directionQueue1.length === 0 || directionQueue1[directionQueue1.length - 1].dx === 0)) {
+                directionQueue1.push({ dx: 1, dy: 0 });
             }
             break;
     }
@@ -247,29 +262,26 @@ document.addEventListener("keydown", (e) => {
 
 // 监听第二条蛇的键盘事件，控制第二条蛇的移动方向
 document.addEventListener("keydown", (e) => {
+    console.log(e.key)
     switch (e.key) {
         case "w":
-            if (dy2 === 0) {
-                dx2 = 0;
-                dy2 = -1;
+            if (dy2 === 0 && (directionQueue2.length === 0 || directionQueue2[directionQueue2.length - 1].dy === 0)) {
+                directionQueue2.push({ dx: 0, dy: -1 });
             }
             break;
         case "s":
-            if (dy2 === 0) {
-                dx2 = 0;
-                dy2 = 1;
+            if (dy2 === 0 && (directionQueue2.length === 0 || directionQueue2[directionQueue2.length - 1].dy === 0)) {
+                directionQueue2.push({ dx: 0, dy: 1 });
             }
             break;
         case "a":
-            if (dx2 === 0) {
-                dx2 = -1;
-                dy2 = 0;
+            if (dx2 === 0 && (directionQueue2.length === 0 || directionQueue2[directionQueue2.length - 1].dx === 0)) {
+                directionQueue2.push({ dx: -1, dy: 0 });
             }
             break;
         case "d":
-            if (dx2 === 0) {
-                dx2 = 1;
-                dy2 = 0;
+            if (dx2 === 0 && (directionQueue2.length === 0 || directionQueue2[directionQueue2.length - 1].dx === 0)) {
+                directionQueue2.push({ dx: 1, dy: 0 });
             }
             break;
     }
