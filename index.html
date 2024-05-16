@@ -13,6 +13,7 @@
 <body>
     <div class="container">
         <div id="header">
+            <button id="musicToggleBtn">🎵</button> <!-- 背景音乐按钮 -->
             <div id="highScore">最高得分: <span id="highScoreValue">0</span></div>
             <div id="score">得分: <span id="scoreValue">0</span></div>
         </div>
@@ -38,8 +39,15 @@
         <button id="resetBtn">重新开始</button>
         <button id="toggleInstructionsBtn">游戏说明</button>
     </div>
+
+    <audio id="backgroundMusic" src="./static/music/background.wav" loop></audio> <!-- 背景音乐 -->
+    <audio id="clickSound" src="./static/music/click.mp3"></audio> <!-- 点击音效 -->
+    <audio id="eatFood" src="./static/music/eatFood.mp3"></audio> <!-- 进食音效 -->
+    <audio id="gameOver" src="./static/music/gameOver.wav"></audio> <!-- 单人结束音效 -->
+    <audio id="gameVictory" src="./static/music/victory.mp3"></audio> <!-- 双人胜利音效 -->
     <script src="./static/script.js"></script>
     <script src="./static/announcement.js"></script>
+    <script src="./static/music.js"></script>
 </body>
 
 </html>
