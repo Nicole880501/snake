@@ -1,15 +1,17 @@
-const moveButtons = document.querySelectorAll('.move-btn');
-console.log(moveButtons[0].getAttribute('player'))
+const moveButtons1 = document.querySelectorAll('.move-btn1');
+const moveButtons2 = document.querySelectorAll('.move-btn2');
 
-// 为每个移动按钮添加点击事件监听器
-moveButtons.forEach(button => {
+// 为玩家一每个移动按钮添加点击事件监听器
+moveButtons1.forEach(button => {
     button.addEventListener('click', () => {
-        if (button.getAttribute('player') === "1") {
-            handlePlayer1Move(button.id);
-        }
-        else {
-            handlePlayer2Move(button.id);
-        }
+        handlePlayer1Move(button.id);
+    });
+});
+
+// 为玩家二每个移动按钮添加点击事件监听器
+moveButtons2.forEach(button => {
+    button.addEventListener('click', () => {
+        handlePlayer2Move(button.id);
     });
 });
 
