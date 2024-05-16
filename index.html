@@ -35,9 +35,22 @@
                 </select>
             </div>
         </div>
+        <div class="arrow-buttons">
+            <div class="line-1">
+                <button id="upBtn">🔼</button>
+            </div>
+            <div class="line-2">
+                <button id="leftBtn">◀️</button>
+                <button id="rightBtn">▶️</button>
+            </div>
+            <div class="line-3">
+                <button id="downBtn">🔽</button>
+            </div>
+        </div>
         <button id="startBtn">开始游戏</button>
         <button id="resetBtn">重新开始</button>
         <button id="toggleInstructionsBtn">游戏说明</button>
+    </div>
     </div>
 
     <audio id="backgroundMusic" src="./static/music/background.wav" loop></audio> <!-- 背景音乐 -->
@@ -46,6 +59,7 @@
     <audio id="gameOver" src="./static/music/gameOver.wav"></audio> <!-- 单人结束音效 -->
     <audio id="gameVictory" src="./static/music/victory.mp3"></audio> <!-- 双人胜利音效 -->
     <script src="./static/script.js"></script>
+    <script src="./static/direction.js"></script>
     <script src="./static/announcement.js"></script>
     <script src="./static/music.js"></script>
 </body>

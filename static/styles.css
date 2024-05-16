@@ -118,3 +118,24 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+/* 方向按钮样式 */
+.arrow-buttons {
+    margin-top: 10px;
+}
+
+.line-2 {
+    margin: 5px 0;
+}
+
+#leftBtn {
+    margin-right: 25px;
+}
+
+#upBtn,
+#downBtn,
+#leftBtn,
+#rightBtn {
+    border: none;
+    font-size: x-large;
+}
