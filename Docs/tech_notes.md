@@ -55,7 +55,7 @@
 
    ```js
    <!-- `snake1`是数组，`slice(1)`遍历索引从1开始到最后一个元素，`some`只要一个满足条件就返回`true` -->
-   snake1.slice(1).some(segment => segment.x === snake1[0].x && segment.y === snake1[0].y));
+   snake1.slice(1).some(segment => segment.x === snake1[0].x && segment.y === snake1[0].y);
    ```
 
 - 如果上述条件有一个满足则触发`gameOver`
@@ -71,7 +71,7 @@
 - 调用`clearInterval`清除计时器
 - 判断是否更新最高得分
 - 输出玩家得分并重置得分
-- 吃实话贪吃蛇数组以及移动方向
+- 初始化贪吃蛇数组以及移动方向
 - 调用drawGame重新绘制游戏
 - 启用开始按钮
 
