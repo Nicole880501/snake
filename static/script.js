@@ -190,7 +190,7 @@ function gameOver(id = 0) {
         victoryMusic.play();
         highScoreElement.textContent = "玩家2️⃣"
         setTimeout(() => {
-            alert("玩家2获胜！");
+            alert("恭喜玩家2️获胜🎉🎉🎉");
         }, 100);  // 100ms 延迟，确保音乐播放开始
         generateSnake();
         dx1 = 0;
@@ -202,7 +202,7 @@ function gameOver(id = 0) {
     } else if (id === 2) {
         victoryMusic.play();
         highScoreElement.textContent = "玩家1️⃣"
-        alert("玩家1获胜！");
+        alert("恭喜玩家1获胜🎉🎉🎉");
         generateSnake();
         dx1 = 0;
         dy1 = 0;
